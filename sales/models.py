@@ -4,7 +4,7 @@ from customers.models import Customer
 from profiles.models import Profile
 from django.utils import timezone
 from .utils import generate_code
-
+from django.shortcuts import reverse
 
 # Create your models here.
 class Position(models.Model):
@@ -35,6 +35,12 @@ class Sale(models.Model):
 
     def __str__(self):
         return f"sales for the month of {self.created.strftime("%m")} for {self.salesman.user.username}"  
+
+# for making the detail page clickable
+    def get_absolute_url(self):
+        return reverse("sales:detail", kwargs={"pk": self.pk})
+    #detail is the name in the url => path("sales/<pk>",SaleDetailView.as_view(),name="detail")
+    
 
     def save(self,*args,**kwargs):
         if self.transaction_id == "":
