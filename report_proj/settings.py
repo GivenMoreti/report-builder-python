@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "products",
     "reports",
     "sales",
+    "profiles",
     "crispy_forms"
 ]
 
